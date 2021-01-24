@@ -107,6 +107,9 @@ Passes NAME and ARGS to use-package."
   (show-paren-mode 1))
 
 ;;; Theme
+;;;; Window decoration
+;; Prevent app bar from displaying in graphical environments.
+(setq default-frame-alist '((undecorated . t)))
 ;;;; Font
 (use-package ligature
   :demand t
