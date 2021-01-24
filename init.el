@@ -108,19 +108,29 @@ Passes NAME and ARGS to use-package."
 
 ;;; Theme
 ;;;; Font
-(use-package dash)
-
-(use-package fira-code
-  :after dash
+(use-package ligature
   :demand t
-  :straight (:host github :repo "johnw42/fira-code-emacs" :files (:defaults "*")
+  :straight (:host github :repo "mickeynp/ligature.el" :files (:defaults "*")
                    :no-byte-compile t)
-  :hook (prog-mode . fira-code-mode)
   :config
-  (set-frame-font "Fira Emacs-11")
+  (set-frame-font "Fira Code-11")
   (setq-default fill-column 80)
-  :custom
-  (prettify-symbols-unprettify-at-point 'right-edge))
+  ;; Enable the www ligature in every possible major mode
+  (ligature-set-ligatures 't '("www"))
+
+  ;; Enable ligatures in programming modes                                                           
+  (ligature-set-ligatures 'prog-mode '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
+                                       ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
+                                       "-<" "-<<" "-~" "#{" "#[" "##" "###" "####" "#(" "#?" "#_"
+                                       "#_(" ".-" ".=" ".." "..<" "..." "?=" "??" ";;" "/*" "/**"
+                                       "/=" "/==" "/>" "//" "///" "&&" "||" "||=" "|=" "|>" "^=" "$>"
+                                       "++" "+++" "+>" "=:=" "==" "===" "==>" "=>" "=>>" "<="
+                                       "=<<" "=/=" ">-" ">=" ">=>" ">>" ">>-" ">>=" ">>>" "<*"
+                                       "<*>" "<|" "<|>" "<$" "<$>" "<!--" "<-" "<--" "<->" "<+"
+                                       "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
+                                       "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
+
+  (global-ligature-mode 't))
 ;;;; Color theme
 (use-package doom-themes
   :demand t
