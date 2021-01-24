@@ -132,7 +132,9 @@ Passes NAME and ARGS to use-package."
                                        "<*>" "<|" "<|>" "<$" "<$>" "<!--" "<-" "<--" "<->" "<+"
                                        "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
                                        "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
-
+  ;; Add hex ligatures
+  (add-to-list 'ligature-composition-table `(t ("0" . ,(rx "x" (+ (or hex-digit hex))))))
+  
   (global-ligature-mode 't))
 ;;;; Color theme
 (use-package doom-themes
